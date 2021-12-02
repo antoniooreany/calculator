@@ -9,7 +9,7 @@ class CalculatorTest {
 
     @Test
     void calculate() {
-        assertEquals(360, Calculator.calculate(
-                "-3* (55 + 5* (3 - 2)) * -2"));
+        assertEquals(846_560, Calculator.calculate(
+                "-37* (555 +          25* (34 - 21)) * -26"));
     }
 }
