@@ -5,6 +5,7 @@ import com.microfocus.test.gorshkov.Elements.MulDivElement;
 import com.microfocus.test.gorshkov.Elements.PlusMinusElement;
 import com.microfocus.test.gorshkov.Elements.ResultElement;
 import com.microfocus.test.gorshkov.Utils.*;
+
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class ElementVisitor implements Visitor {
         while (true) {
             Lexeme lexeme = lexemeBuffer.next();
             switch (lexeme.type) {
-                case OP_PLUS -> value += visit(new MulDivElement());
-                case OP_MINUS -> value -= visit(new MulDivElement());
+                case PLUS -> value += visit(new MulDivElement());
+                case MINUS -> value -= visit(new MulDivElement());
                 case EOF, RIGHT_BRACKET -> {
                     lexemeBuffer.back();
                     return value;
@@ -48,9 +49,9 @@ public class ElementVisitor implements Visitor {
     public int visit(FactorElement factor) {
         Lexeme lexeme = lexemeBuffer.next();
         switch (lexeme.type) {
-            case NUMBER:
+            case INT:
                 return Integer.parseInt(lexeme.value);
-            case OP_MINUS:
+            case MINUS:
                 return -visit(new FactorElement());
             case LEFT_BRACKET:
                 int value = visit(new PlusMinusElement());
@@ -74,9 +75,9 @@ public class ElementVisitor implements Visitor {
         while (true) {
             Lexeme lexeme = lexemeBuffer.next();
             switch (lexeme.type) {
-                case OP_MUL -> value *= visit(new FactorElement());
-                case OP_DIV -> value /= visit(new FactorElement());
-                case EOF, RIGHT_BRACKET, OP_PLUS, OP_MINUS -> {
+                case MUL -> value *= visit(new FactorElement());
+                case DIV -> value /= visit(new FactorElement());
+                case EOF, RIGHT_BRACKET, PLUS, MINUS -> {
                     lexemeBuffer.back();
                     return value;
                 }

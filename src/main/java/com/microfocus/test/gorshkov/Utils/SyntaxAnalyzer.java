@@ -20,19 +20,19 @@ public class SyntaxAnalyzer {
                     pos++;
                     continue;
                 case '+':
-                    lexemes.add(new Lexeme(LexemeType.OP_PLUS, c));
+                    lexemes.add(new Lexeme(LexemeType.PLUS, c));
                     pos++;
                     continue;
                 case '-':
-                    lexemes.add(new Lexeme(LexemeType.OP_MINUS, c));
+                    lexemes.add(new Lexeme(LexemeType.MINUS, c));
                     pos++;
                     continue;
                 case '*':
-                    lexemes.add(new Lexeme(LexemeType.OP_MUL, c));
+                    lexemes.add(new Lexeme(LexemeType.MUL, c));
                     pos++;
                     continue;
                 case '/':
-                    lexemes.add(new Lexeme(LexemeType.OP_DIV, c));
+                    lexemes.add(new Lexeme(LexemeType.DIV, c));
                     pos++;
                     continue;
                 default:
@@ -44,7 +44,7 @@ public class SyntaxAnalyzer {
                             if (pos >= inputExpression.length()) break;
                             c = inputExpression.charAt(pos);
                         } while (c >= '0' && c <= '9');
-                        lexemes.add(new Lexeme(LexemeType.NUMBER, sb.toString()));
+                        lexemes.add(new Lexeme(LexemeType.INT, sb.toString()));
                     } else {
                         if (c != ' ') throw new IllegalArithmeticExpression(
                                 MessageFormat.format("Unexpected character: \"{0}\"", c));

@@ -5,8 +5,9 @@ import com.microfocus.test.gorshkov.SemanticAnalyzer.ElementVisitor;
 
 public class Calculator {
 
-    public static int calculate(String arithmeticExpression) {
+    public static int getResult(String arithmeticExpression) {
+        ResultElement resultElement = new ResultElement();
         ElementVisitor elementVisitor = new ElementVisitor(arithmeticExpression);
-        return elementVisitor.visit(new ResultElement());
+        return resultElement.accept(elementVisitor);
     }
 }

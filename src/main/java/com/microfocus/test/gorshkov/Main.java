@@ -120,11 +120,6 @@ https://en.wikipedia.org/wiki/Chomsky_hierarchy
 
 package com.microfocus.test.gorshkov;
 
-import com.microfocus.test.gorshkov.Elements.FactorElement;
-import com.microfocus.test.gorshkov.Elements.MulDivElement;
-import com.microfocus.test.gorshkov.Elements.PlusMinusElement;
-import com.microfocus.test.gorshkov.Elements.ResultElement;
-import com.microfocus.test.gorshkov.SemanticAnalyzer.ElementVisitor;
 import com.microfocus.test.gorshkov.Utils.Calculator;
 
 import java.text.MessageFormat;
@@ -133,15 +128,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String arithmeticExpression;
-//        arithmeticExpression = "-3* (55 + 5* (3 - 2)) * -2";
+
         try (Scanner in = new Scanner(System.in)) {
             System.out.print("Input an arithmetic expression and press <Enter>: ");
             arithmeticExpression = in.nextLine();
         }
 
-        ResultElement resultElement = new ResultElement();
-        ElementVisitor elementVisitor = new ElementVisitor(arithmeticExpression);
-        int result = resultElement.accept(elementVisitor);
+        int result = Calculator.getResult(arithmeticExpression);
+
         System.out.println(MessageFormat.format(
                 "The result of the calculation is: {0}", result));
     }
