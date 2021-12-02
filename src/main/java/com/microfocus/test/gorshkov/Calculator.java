@@ -1,11 +1,16 @@
 package com.microfocus.test.gorshkov;
 
+import com.microfocus.test.gorshkov.Elements.Result;
+
 import java.util.List;
 
 public class Calculator {
-    public static int calculate(String inputExpression) {
-        List<Lexeme> lexemes = SyntaxAnalyzer.lexemize(inputExpression);
+
+    public static LexemeBuffer lexemeBuffer;
+
+    public static int calculate(String arithmeticExpression) {
+        List<Lexeme> lexemes = SyntaxAnalyzer.lexemize(arithmeticExpression);
         LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
-        return SemanticAnalyzer.result(lexemeBuffer);
+        return Result.result(lexemeBuffer);
     }
 }

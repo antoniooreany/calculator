@@ -1,8 +1,8 @@
 package com.microfocus.test.gorshkov;
 
 public class Lexeme {
-    LexemeType type;
-    String value;
+    public LexemeType type;
+    public String value;
 
     public Lexeme(LexemeType type, String value) {
         this.type = type;
