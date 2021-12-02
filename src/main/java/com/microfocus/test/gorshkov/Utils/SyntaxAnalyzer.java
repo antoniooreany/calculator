@@ -1,4 +1,4 @@
-package com.microfocus.test.gorshkov;
+package com.microfocus.test.gorshkov.Utils;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;

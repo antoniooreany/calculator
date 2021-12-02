@@ -92,10 +92,10 @@ https://en.wikipedia.org/wiki/Chomsky_hierarchy
 
          Expr → Expr + Term
          Expr → Term
-         Term → Term * Factor
-         Term → Factor
-         Factor → "(" Expr ")"
-         Factor → integer
+         Term → Term * FactorElement
+         Term → FactorElement
+         FactorElement → "(" Expr ")"
+         FactorElement → integer
 
         Expr    ← Sum
         Sum     ← Product (('+' / '-') Product)*
@@ -108,18 +108,19 @@ https://en.wikipedia.org/wiki/Chomsky_hierarchy
         Sum     ← Expr (('+' / '-') Expr)*
         Expr    ← Product / Sum / Value
 
+  /////////////////////////////////////////////////////////////
+  ///// FINALLY:///////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
+        result : plusMinus* EOF ;
+        plusMinus: mulDiv ( ( '+' | '-' ) mulDiv )* ;
+        mulDiv : factor ( ( '*' | '/' ) factor )* ;
+        factor : unaryMinus | INT | '(' result ')' ;
+        unaryMinus : '-' factor
  */
+
 package com.microfocus.test.gorshkov;
+
+import com.microfocus.test.gorshkov.Utils.Calculator;
 
 import java.text.MessageFormat;
 import java.util.Scanner;
@@ -127,11 +128,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String arithmeticExpression;
-        arithmeticExpression = "-3* (-55 + 5* (3 - 2)) * 2";
-//        try (Scanner in = new Scanner(System.in)) {   // TODO read from console
-//            System.out.print("Input an arithmetic expression and press <Enter>: ");
-//            arithmeticExpression = in.nextLine();
-//        }
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.print("Input an arithmetic expression and press <Enter>: ");
+            arithmeticExpression = in.nextLine();
+        }
         System.out.println(MessageFormat.format("The result of the calculation is: {0}",
                 Calculator.calculate(arithmeticExpression)));
     }

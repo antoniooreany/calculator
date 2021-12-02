@@ -1,11 +1,10 @@
-package com.microfocus.test.gorshkov;
+package com.microfocus.test.gorshkov.Utils;
 
 import java.util.List;
 
 public class LexemeBuffer {
     private int pos;
-
-    public List<Lexeme> lexemes;
+    private final List<Lexeme> lexemes;
 
     public LexemeBuffer(List<Lexeme> lexemes) {
         this.lexemes = lexemes;

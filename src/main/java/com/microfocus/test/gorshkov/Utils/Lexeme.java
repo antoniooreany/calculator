@@ -1,4 +1,4 @@
-package com.microfocus.test.gorshkov;
+package com.microfocus.test.gorshkov.Utils;
 
 public class Lexeme {
     public LexemeType type;

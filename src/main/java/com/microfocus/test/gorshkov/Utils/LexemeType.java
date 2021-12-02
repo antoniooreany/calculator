@@ -1,4 +1,4 @@
-package com.microfocus.test.gorshkov;
+package com.microfocus.test.gorshkov.Utils;
 
 public enum LexemeType {
     LEFT_BRACKET, RIGHT_BRACKET,
